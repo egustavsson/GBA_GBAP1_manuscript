@@ -57,13 +57,11 @@ GENCODEv38_pseudogenes_to_plot <-
         legend.justification="top",
         legend.direction="horizontal",
         legend.title=element_blank(),
-        axis.text = element_blank(),
         axis.text.x = element_blank(),
         axis.title = element_blank(),
         axis.line.x = element_blank(),
         axis.line.y = element_blank(), 
         axis.ticks.y = element_blank(),
-        axis.ticks.x = element_blank(),
         legend.background = element_rect(fill="gray93",
                                          size=0.8, linetype="solid", 
                                          colour ="black")) + 
