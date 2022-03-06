@@ -26,13 +26,12 @@ parent_pseudo_to_plot <-
       dplyr::mutate(gene = "Pseudogenes")
   ) %>% 
   
-  
   ggplot(aes(x = no_tissues_expressed, 
              fill = type))+
   geom_histogram(aes(y=..density..),
                  position = "dodge", 
                  colour = "black", 
-                 binwidth = 1) + 
+                 binwidth = 2) + 
   theme_classic() +
   labs(x = "Number of tissues", y = "Fraction of pseudo genes") +
   scale_fill_manual(values = c("#7570B3", "#E6AB02")) +
@@ -40,20 +39,21 @@ parent_pseudo_to_plot <-
         axis.text.x = element_text(face = "bold",
                                    size = 8),
         axis.text.y = element_text(face = "bold",
-                                   size = 12),
+                                   size = 10),
         axis.title.y = element_text(size = 14),
         strip.text.x = element_text(face = "bold",
                                     size = 12),
         strip.background =element_rect(fill="gray63"),
-        legend.title = element_blank()) +
+        legend.title = element_blank(),
+        legend.position = c(0.9, 0.5)) +
   facet_wrap(~gene)
 
 # Save data ---------------------------------------------------------------
 
-ggsave(plot = pseudogenes_expression_to_plot, 
-       filename = "pseudogenes_expression_to_plot.png", 
+ggsave(plot = parent_pseudo_to_plot, 
+       filename = "parent_pseudo_expression_plot.png", 
        path = here::here("results", "pseudogenes"), 
-       width = 4, 
-       height = 3, 
+       width = 8, 
+       height = 4, 
        dpi = 600
 )
