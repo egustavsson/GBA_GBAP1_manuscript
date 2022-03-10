@@ -42,6 +42,8 @@ GCase_activity_to_plot$Genotype <-
          levels = c("H4 Parental",
                     "H4 GBA KO"))
 
+## Tuke post hoc ##
+
 tukey_data <- 
   GCase_activity_to_plot %>% 
   rstatix::group_by(Genotype) %>% 

@@ -1,127 +1,145 @@
-Genotype	construct	Enzyme activity
-H4 Parental	pcDNA3.1(+)	0.9943255
-H4 Parental	pcDNA3.1(+)	0.909075
-H4 Parental	pcDNA3.1(+)	0.842912
-H4 Parental	pcDNA3.1(+)	1.02174
-H4 Parental	pcDNA3.1(+)	1.008373
-H4 Parental	pcDNA3.1(+)	1.083729
-H4 Parental	pcDNA3.1(+)	0.959709
-H4 Parental	pcDNA3.1(+)	0.915317
-H4 Parental	pcDNA3.1(+)	0.913345
-H4 GBA KO	pcDNA3.1(+)	NA
-H4 GBA KO	pcDNA3.1(+)	NA
-H4 GBA KO	pcDNA3.1(+)	NA
-H4 GBA KO	pcDNA3.1(+)	1.0904197
-H4 GBA KO	pcDNA3.1(+)	1.039631599
-H4 GBA KO	pcDNA3.1(+)	1.051795
-H4 GBA KO	pcDNA3.1(+)	1.031310486
-H4 GBA KO	pcDNA3.1(+)	0.969344
-H4 GBA KO	pcDNA3.1(+)	0.99832
-H4 Parental	Construct 1	0.8828572
-H4 Parental	Construct 1	0.924882
-H4 Parental	Construct 1	0.930488
-H4 Parental	Construct 1	0.996304
-H4 Parental	Construct 1	0.93595
-H4 Parental	Construct 1	0.939404
-H4 Parental	Construct 1	0.900653
-H4 Parental	Construct 1	0.878723
-H4 Parental	Construct 1	0.930503
-H4 GBA KO	Construct 1	0.920097
-H4 GBA KO	Construct 1	0.933625
-H4 GBA KO	Construct 1	0.889031
-H4 GBA KO	Construct 1	0.9659989
-H4 GBA KO	Construct 1	0.983716293
-H4 GBA KO	Construct 1	0.962424
-H4 GBA KO	Construct 1	0.939170125
-H4 GBA KO	Construct 1	0.973764
-H4 GBA KO	Construct 1	0.889641
-H4 Parental	Construct 2	1.0097624
-H4 Parental	Construct 2	0.975278
-H4 Parental	Construct 2	1.016563
-H4 Parental	Construct 2	0.847013
-H4 Parental	Construct 2	0.812493
-H4 Parental	Construct 2	0.887593
-H4 Parental	Construct 2	0.888993
-H4 Parental	Construct 2	0.855025
-H4 Parental	Construct 2	0.888104
-H4 GBA KO	Construct 2	0.929591
-H4 GBA KO	Construct 2	0.895875
-H4 GBA KO	Construct 2	0.907993
-H4 GBA KO	Construct 2	1.0220281
-H4 GBA KO	Construct 2	0.978703
-H4 GBA KO	Construct 2	1.004325
-H4 GBA KO	Construct 2	0.960576618
-H4 GBA KO	Construct 2	0.912304
-H4 GBA KO	Construct 2	0.93397
-H4 Parental	Construct 3	1.3255738
-H4 Parental	Construct 3	1.252714
-H4 Parental	Construct 3	1.24226
-H4 Parental	Construct 3	0.877987
-H4 Parental	Construct 3	0.914888
-H4 Parental	Construct 3	0.987465
-H4 Parental	Construct 3	1.011582
-H4 Parental	Construct 3	0.998348
-H4 Parental	Construct 3	1.002528
-H4 GBA KO	Construct 3	0.955184
-H4 GBA KO	Construct 3	0.931872
-H4 GBA KO	Construct 3	0.89159
-H4 GBA KO	Construct 3	0.9704282
-H4 GBA KO	Construct 3	1.022013863
-H4 GBA KO	Construct 3	0.972137
-H4 GBA KO	Construct 3	0.936165705
-H4 GBA KO	Construct 3	0.939199
-H4 GBA KO	Construct 3	0.92474
-H4 Parental	Construct 4	0.9706348
-H4 Parental	Construct 4	1.087414
-H4 Parental	Construct 4	1.113013
-H4 Parental	Construct 4	0.86229
-H4 Parental	Construct 4	0.848351
-H4 Parental	Construct 4	0.955121
-H4 Parental	Construct 4	0.977654
-H4 Parental	Construct 4	0.979473
-H4 Parental	Construct 4	0.957318
-H4 GBA KO	Construct 4	0.967974
-H4 GBA KO	Construct 4	0.926848
-H4 GBA KO	Construct 4	0.911816
-H4 GBA KO	Construct 4	1.04436
-H4 GBA KO	Construct 4	0.969787315
-H4 GBA KO	Construct 4	0.991977
-H4 GBA KO	Construct 4	0.954972219
-H4 GBA KO	Construct 4	0.986374
-H4 GBA KO	Construct 4	0.941279
-H4 Parental	Construct 5	2.4240385
-H4 Parental	Construct 5	2.4539
-H4 Parental	Construct 5	2.403122
-H4 Parental	Construct 5	2.986449
-H4 Parental	Construct 5	2.400464
-H4 Parental	Construct 5	2.964039
-H4 Parental	Construct 5	2.848777
-H4 Parental	Construct 5	2.788525
-H4 Parental	Construct 5	2.717257
-H4 GBA KO	Construct 5	4.685467
-H4 GBA KO	Construct 5	4.986298
-H4 GBA KO	Construct 5	4.251315
-H4 GBA KO	Construct 5	7.4186052
-H4 GBA KO	Construct 5	7.270100646
-H4 GBA KO	Construct 5	7.765377
-H4 GBA KO	Construct 5	4.828290658
-H4 GBA KO	Construct 5	4.524945
-H4 GBA KO	Construct 5	4.826211
-H4 Parental	Construct 6	1.1191025
-H4 Parental	Construct 6	1.103646
-H4 Parental	Construct 6	0.900014
-H4 Parental	Construct 6	1.085762
-H4 Parental	Construct 6	1.048646
-H4 Parental	Construct 6	1.098403
-H4 Parental	Construct 6	0.933702
-H4 Parental	Construct 6	0.902309
-H4 Parental	Construct 6	0.9313
-H4 GBA KO	Construct 6	0.970559
-H4 GBA KO	Construct 6	0.949211
-H4 GBA KO	Construct 6	0.930039
-H4 GBA KO	Construct 6	0.9956656
-H4 GBA KO	Construct 6	0.953365932
-H4 GBA KO	Construct 6	1.039005
-H4 GBA KO	Construct 6	1.008604004
-H4 GBA KO	Construct 6	1.010958
-H4 GBA KO	Construct 6	0.966037
+Cell line	construct	Enzyme activity	Gene
+H4 Parental	pcDNA3.1(+)	0.9943255	GBAP1
+H4 Parental	pcDNA3.1(+)	0.909075	GBAP1
+H4 Parental	pcDNA3.1(+)	0.842912	GBAP1
+H4 Parental	pcDNA3.1(+)	1.02174	GBAP1
+H4 Parental	pcDNA3.1(+)	1.008373	GBAP1
+H4 Parental	pcDNA3.1(+)	1.083729	GBAP1
+H4 Parental	pcDNA3.1(+)	0.959709	GBAP1
+H4 Parental	pcDNA3.1(+)	0.915317	GBAP1
+H4 Parental	pcDNA3.1(+)	0.913345	GBAP1
+H4 GBA KO	pcDNA3.1(+)	NA	GBAP1
+H4 GBA KO	pcDNA3.1(+)	NA	GBAP1
+H4 GBA KO	pcDNA3.1(+)	NA	GBAP1
+H4 GBA KO	pcDNA3.1(+)	1.0904197	GBAP1
+H4 GBA KO	pcDNA3.1(+)	1.039631599	GBAP1
+H4 GBA KO	pcDNA3.1(+)	1.051795	GBAP1
+H4 GBA KO	pcDNA3.1(+)	1.031310486	GBAP1
+H4 GBA KO	pcDNA3.1(+)	0.969344	GBAP1
+H4 GBA KO	pcDNA3.1(+)	0.99832	GBAP1
+H4 Parental	pcDNA3.1(+)	0.9943255	GBA
+H4 Parental	pcDNA3.1(+)	0.909075	GBA
+H4 Parental	pcDNA3.1(+)	0.842912	GBA
+H4 Parental	pcDNA3.1(+)	1.02174	GBA
+H4 Parental	pcDNA3.1(+)	1.008373	GBA
+H4 Parental	pcDNA3.1(+)	1.083729	GBA
+H4 Parental	pcDNA3.1(+)	0.959709	GBA
+H4 Parental	pcDNA3.1(+)	0.915317	GBA
+H4 Parental	pcDNA3.1(+)	0.913345	GBA
+H4 GBA KO	pcDNA3.1(+)	NA	GBA
+H4 GBA KO	pcDNA3.1(+)	NA	GBA
+H4 GBA KO	pcDNA3.1(+)	NA	GBA
+H4 GBA KO	pcDNA3.1(+)	1.0904197	GBA
+H4 GBA KO	pcDNA3.1(+)	1.039631599	GBA
+H4 GBA KO	pcDNA3.1(+)	1.051795	GBA
+H4 GBA KO	pcDNA3.1(+)	1.031310486	GBA
+H4 GBA KO	pcDNA3.1(+)	0.969344	GBA
+H4 GBA KO	pcDNA3.1(+)	0.99832	GBA
+H4 Parental	Construct 1	0.8828572	GBAP1
+H4 Parental	Construct 1	0.924882	GBAP1
+H4 Parental	Construct 1	0.930488	GBAP1
+H4 Parental	Construct 1	0.996304	GBAP1
+H4 Parental	Construct 1	0.93595	GBAP1
+H4 Parental	Construct 1	0.939404	GBAP1
+H4 Parental	Construct 1	0.900653	GBAP1
+H4 Parental	Construct 1	0.878723	GBAP1
+H4 Parental	Construct 1	0.930503	GBAP1
+H4 GBA KO	Construct 1	0.920097	GBAP1
+H4 GBA KO	Construct 1	0.933625	GBAP1
+H4 GBA KO	Construct 1	0.889031	GBAP1
+H4 GBA KO	Construct 1	0.9659989	GBAP1
+H4 GBA KO	Construct 1	0.983716293	GBAP1
+H4 GBA KO	Construct 1	0.962424	GBAP1
+H4 GBA KO	Construct 1	0.939170125	GBAP1
+H4 GBA KO	Construct 1	0.973764	GBAP1
+H4 GBA KO	Construct 1	0.889641	GBAP1
+H4 Parental	Construct 2	1.0097624	GBA
+H4 Parental	Construct 2	0.975278	GBA
+H4 Parental	Construct 2	1.016563	GBA
+H4 Parental	Construct 2	0.847013	GBA
+H4 Parental	Construct 2	0.812493	GBA
+H4 Parental	Construct 2	0.887593	GBA
+H4 Parental	Construct 2	0.888993	GBA
+H4 Parental	Construct 2	0.855025	GBA
+H4 Parental	Construct 2	0.888104	GBA
+H4 GBA KO	Construct 2	0.929591	GBA
+H4 GBA KO	Construct 2	0.895875	GBA
+H4 GBA KO	Construct 2	0.907993	GBA
+H4 GBA KO	Construct 2	1.0220281	GBA
+H4 GBA KO	Construct 2	0.978703	GBA
+H4 GBA KO	Construct 2	1.004325	GBA
+H4 GBA KO	Construct 2	0.960576618	GBA
+H4 GBA KO	Construct 2	0.912304	GBA
+H4 GBA KO	Construct 2	0.93397	GBA
+H4 Parental	Construct 3	1.3255738	GBA
+H4 Parental	Construct 3	1.252714	GBA
+H4 Parental	Construct 3	1.24226	GBA
+H4 Parental	Construct 3	0.877987	GBA
+H4 Parental	Construct 3	0.914888	GBA
+H4 Parental	Construct 3	0.987465	GBA
+H4 Parental	Construct 3	1.011582	GBA
+H4 Parental	Construct 3	0.998348	GBA
+H4 Parental	Construct 3	1.002528	GBA
+H4 GBA KO	Construct 3	0.955184	GBA
+H4 GBA KO	Construct 3	0.931872	GBA
+H4 GBA KO	Construct 3	0.89159	GBA
+H4 GBA KO	Construct 3	0.9704282	GBA
+H4 GBA KO	Construct 3	1.022013863	GBA
+H4 GBA KO	Construct 3	0.972137	GBA
+H4 GBA KO	Construct 3	0.936165705	GBA
+H4 GBA KO	Construct 3	0.939199	GBA
+H4 GBA KO	Construct 3	0.92474	GBA
+H4 Parental	Construct 4	0.9706348	GBAP1
+H4 Parental	Construct 4	1.087414	GBAP1
+H4 Parental	Construct 4	1.113013	GBAP1
+H4 Parental	Construct 4	0.86229	GBAP1
+H4 Parental	Construct 4	0.848351	GBAP1
+H4 Parental	Construct 4	0.955121	GBAP1
+H4 Parental	Construct 4	0.977654	GBAP1
+H4 Parental	Construct 4	0.979473	GBAP1
+H4 Parental	Construct 4	0.957318	GBAP1
+H4 GBA KO	Construct 4	0.967974	GBAP1
+H4 GBA KO	Construct 4	0.926848	GBAP1
+H4 GBA KO	Construct 4	0.911816	GBAP1
+H4 GBA KO	Construct 4	1.04436	GBAP1
+H4 GBA KO	Construct 4	0.969787315	GBAP1
+H4 GBA KO	Construct 4	0.991977	GBAP1
+H4 GBA KO	Construct 4	0.954972219	GBAP1
+H4 GBA KO	Construct 4	0.986374	GBAP1
+H4 GBA KO	Construct 4	0.941279	GBAP1
+H4 Parental	Construct 5	2.4240385	GBA
+H4 Parental	Construct 5	2.4539	GBA
+H4 Parental	Construct 5	2.403122	GBA
+H4 Parental	Construct 5	2.986449	GBA
+H4 Parental	Construct 5	2.400464	GBA
+H4 Parental	Construct 5	2.964039	GBA
+H4 Parental	Construct 5	2.848777	GBA
+H4 Parental	Construct 5	2.788525	GBA
+H4 Parental	Construct 5	2.717257	GBA
+H4 GBA KO	Construct 5	4.685467	GBA
+H4 GBA KO	Construct 5	4.986298	GBA
+H4 GBA KO	Construct 5	4.251315	GBA
+H4 GBA KO	Construct 5	7.4186052	GBA
+H4 GBA KO	Construct 5	7.270100646	GBA
+H4 GBA KO	Construct 5	7.765377	GBA
+H4 GBA KO	Construct 5	4.828290658	GBA
+H4 GBA KO	Construct 5	4.524945	GBA
+H4 GBA KO	Construct 5	4.826211	GBA
+H4 Parental	Construct 6	1.1191025	GBA
+H4 Parental	Construct 6	1.103646	GBA
+H4 Parental	Construct 6	0.900014	GBA
+H4 Parental	Construct 6	1.085762	GBA
+H4 Parental	Construct 6	1.048646	GBA
+H4 Parental	Construct 6	1.098403	GBA
+H4 Parental	Construct 6	0.933702	GBA
+H4 Parental	Construct 6	0.902309	GBA
+H4 Parental	Construct 6	0.9313	GBA
+H4 GBA KO	Construct 6	0.970559	GBA
+H4 GBA KO	Construct 6	0.949211	GBA
+H4 GBA KO	Construct 6	0.930039	GBA
+H4 GBA KO	Construct 6	0.9956656	GBA
+H4 GBA KO	Construct 6	0.953365932	GBA
+H4 GBA KO	Construct 6	1.039005	GBA
+H4 GBA KO	Construct 6	1.008604004	GBA
+H4 GBA KO	Construct 6	1.010958	GBA
+H4 GBA KO	Construct 6	0.966037	GBA
