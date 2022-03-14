@@ -3,6 +3,7 @@
 library(tidyverse)
 library(here)
 library(rstatix)
+library(ggpubr)
 
 # Load data ---------------------------------------------------------------
 
@@ -37,8 +38,8 @@ GCase_activity_to_plot$construct <-
                     "PB.845.525\n(GBAP1)",
                     "PB.845.1693\n(GBAP1)"))
 
-GCase_activity_to_plot$Genotype <- 
-  factor(GCase_activity_to_plot$Genotype,
+GCase_activity_to_plot$`Cell line` <- 
+  factor(GCase_activity_to_plot$`Cell line`,
          levels = c("H4 Parental",
                     "H4 GBA KO"))
 
@@ -46,52 +47,59 @@ GCase_activity_to_plot$Genotype <-
 
 tukey_data <- 
   GCase_activity_to_plot %>% 
-  rstatix::group_by(Genotype) %>% 
+  rstatix::group_by(`Cell line`, Gene) %>% 
   tukey_hsd(`Enzyme activity` ~ construct) %>% 
+  add_y_position(scales = "free_y") %>%
   dplyr::filter(group1 == "pcDNA3.1\n(empty vector)" | group2 == "pcDNA3.1\n(empty vector)")
 
 ## ggboxplot ##
 
-Enzyme_activity_plot <-
+for (i in c("GBA", "GBAP1")) {
   
-  ggpubr::ggbarplot(GCase_activity_to_plot, 
-                  x = "construct",
-                  y = "Enzyme activity",
-                  fill = "construct", 
-                  add = c("mean_sd", "jitter"),
-                  facet.by = c("Genotype"),
-                  width = 0.9) +
-  ggpubr::stat_pvalue_manual(tukey_data,
-                             hide.ns = TRUE,
-                             y.position = 9,
-                             size = 5,
-                             bracket.size = 0.5,
-                             tip.length = 0.01) +
-  ylim(0, 10) +
-  labs(x = "",
-       y = "Enzyme activity (normalised to UTC)") +
-  scale_fill_brewer(palette = "Dark2") +
+  data_to_plot <-
+    list(activity = dplyr::filter(GCase_activity_to_plot, Gene == i),
+         tukey = dplyr::filter(tukey_data, Gene == i))
   
-  theme_classic() +
-  theme(legend.position = "none",
-        axis.title = element_text(size = 14),
-        axis.text.x = element_text(face = "bold",
-                                   size = 10, angle = 45, 
-                                   hjust = 1),
-        axis.text.y = element_text(face = "bold",
-                                   size = 10),
-        axis.title.y = element_text(size = 14,
-                                    face = "bold"),
-        strip.text.x = element_text(face = "bold",
-                                    size = 12),
-        strip.background =element_rect(fill = "gray80"))
-
+  
+  
+  ggpubr::ggboxplot(data_to_plot$activity, 
+                    x = "construct",
+                    y = "Enzyme activity",
+                    fill = "construct", 
+                    add = c("jitter"),
+                    notch = F,
+                    facet.by = c("`Cell line`"),
+                    width = 0.9) +
+    ggpubr::stat_pvalue_manual(data_to_plot$tukey,
+                               hide.ns = TRUE,
+                               size = 5,
+                               bracket.size = 0.5,
+                               tip.length = 0.01) +
+    labs(x = "",
+         y = "Enzyme activity (normalised to UTC)") +
+    scale_fill_brewer(palette = "Dark2") +
+    
+    theme_classic() +
+    theme(legend.position = "none",
+          axis.title = element_text(size = 14),
+          axis.text.x = element_text(face = "bold",
+                                     size = 10, angle = 45, 
+                                     hjust = 1),
+          axis.text.y = element_text(face = "bold",
+                                     size = 10),
+          axis.title.y = element_text(size = 14,
+                                      face = "bold"),
+          strip.text.x = element_text(face = "bold",
+                                      size = 12),
+          strip.background =element_rect(fill = "gray80"))
+  
 # Save data ---------------------------------------------------------------
-
-ggsave(plot = Enzyme_activity_plot, 
-       filename = "Enzyme_activity_plot.png", 
-       path = here::here("results", "biochem"), 
-       width = 8, 
-       height = 6, 
-       dpi = 600
-)
+  
+  ggsave(filename = paste0(i, "_Enzyme_activity_plot.png"), 
+         path = here::here("results", "biochem"), 
+         width = 8, 
+         height = 6, 
+         dpi = 600
+  )  
+  
+}
