@@ -25,7 +25,7 @@ Expression_to_plot <-
   
   ggplot(aes(x = Description, 
              y = tpm)) +
-  geom_violin(aes(fill = `Brain tissue?`), 
+  geom_violin(fill = "gray83", 
               scale = TRUE, 
               show.legend = F) +
   geom_boxplot(width=0.05, 
@@ -38,7 +38,6 @@ Expression_to_plot <-
              ncol = 4) +
   labs(x = "", 
        y = "TPM") +
-  scale_fill_manual(values = c("#888888", "#00BFC4")) +
   theme_classic() +
   theme(axis.title = element_text(size = 14),
         axis.text.x = element_text(face = "bold",
@@ -53,9 +52,6 @@ Expression_to_plot <-
 
 ## Plot fold change ##
 
-
-
-
 Fold_change_to_plot <-
   gtex_filtered %>% 
   split(.$Description) %>% 
@@ -68,17 +64,14 @@ Fold_change_to_plot <-
   
   ggplot(aes(x = FC, 
              y = reorder(Organ.x, -FC))) +
-  geom_violin(aes(fill = "gray83"),
+  geom_violin(fill = "gray83",
               scale = TRUE, 
               show.legend = F) +
   geom_boxplot(width=0.1, 
                outlier.shape = NA) +
-  #geom_vline(aes(xintercept = mean(delta)), linetype = "dashed", colour = "red") +
   geom_vline(aes(xintercept = 0), linetype = "dashed", colour = "grey") +
   labs(y = "", 
        x = bquote(log[2]~fold~change~(GBA/GBAP1))) +
-  #xlim(-2, 10) +
-  scale_fill_manual(values = c("#888888", "#00BFC4")) +
   theme_classic() +
   coord_flip() +
   facet_wrap(. ~Organ.x, scales = "free_x") +
@@ -93,3 +86,18 @@ Fold_change_to_plot <-
         axis.text.y = element_text(face = "bold",
                                    size = 10),
         axis.title.y = element_text(size = 14))
+
+GBA_GBAP1_GTEx_expression <-
+  grid.arrange(Expression_to_plot,
+               Fold_change_to_plot, 
+               ncol = 1)
+
+# Save data ---------------------------------------------------------------
+
+ggsave(plot = GBA_GBAP1_GTEx_expression, 
+       filename = "GBA_GBAP1_GTEx_expression.png", 
+       path = here::here("results", "GTEx"), 
+       width = 8, 
+       height = 10, 
+       dpi = 600
+)
