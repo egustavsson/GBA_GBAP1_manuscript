@@ -13,6 +13,8 @@ Transcripts <-
 
 # Main --------------------------------------------------------------------
 
+## Data to plot ##
+
 Transcripts_to_plot <-
   bind_rows(!!!Transcripts) %>% 
   dplyr::select(Isoform_class, 
@@ -29,12 +31,35 @@ Transcripts_to_plot <-
             FUN = "sum") %>% 
   dplyr::mutate(region = str_replace_all(region, "_", " "),
                 associated_gene = str_replace_all(associated_gene, c("ENSG00000177628.16" = "GBA",
-                                                                     "ENSG00000160766.14" = "GBAP1"))) %>% 
+                                                                     "ENSG00000160766.14" = "GBAP1"))) 
+
+## Function to define order ##
+
+plot_order <- function(data, category, gene){
   
+    data %>%
+    group_by(associated_gene, region) %>% 
+    dplyr::mutate(freq = count / sum(count)) %>% 
+    dplyr::filter(associated_gene == gene,
+                  Isoform_class == category) %>%
+    arrange(freq) %>% 
+    pull(region)
+}
+
+## Plot ##
+
+Transcripts_to_plot %>% 
   
-  ggplot(aes(x=region, y = count, fill = Isoform_class)) + 
-  geom_col(colour = "black", position = "fill") +
-  labs(y = "Expression per transcript category", x = "Tissue") +
+  ggplot(aes(x = factor(region,
+                        plot_order(data = Transcripts_to_plot,
+                                   category = "Coding known (alternate 3/5 end)",
+                                   gene = "GBA")),
+             y = count,
+             fill = Isoform_class)) +
+  geom_col(colour = "black", 
+           position = "fill") +
+  labs(x = "Tissue",
+       y = "Expression per transcript category") +
   facet_wrap(~factor(associated_gene)) +
   scale_fill_brewer(palette = "Dark2") +
   scale_y_continuous(labels = scales::percent) +
