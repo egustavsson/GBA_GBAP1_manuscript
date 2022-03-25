@@ -48,7 +48,8 @@ plot_order <- function(data, category, gene){
 
 ## Plot ##
 
-Transcripts_to_plot %>% 
+Transcripts_per_tissue_plot <-
+  Transcripts_to_plot %>% 
   
   ggplot(aes(x = factor(region,
                         plot_order(data = Transcripts_to_plot,
@@ -78,7 +79,7 @@ Transcripts_to_plot %>%
 
 # Save data ---------------------------------------------------------------
 
-ggsave(plot = Transcripts_to_plot, 
+ggsave(plot = Transcripts_per_tissue_plot, 
        filename = "Transcripts_per_tissue.png", 
        path = here::here("results", "transcripts"), 
        width = 10, 

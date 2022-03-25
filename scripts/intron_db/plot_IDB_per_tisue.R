@@ -6,30 +6,23 @@ library(here)
 
 # Load data ---------------------------------------------------------------
 
-prop_ers_per_tissue <- readr::read_csv(
-  here::here("results", "ers", "prop_ers_per_tissue.csv")
-)
+df_lncRNA_genes_IDB_tidy <- 
+  readRDS(
+    here::here("results", "intron_db", "prop_genes_IDB_threshold_5.rds"))
 
 # Main --------------------------------------------------------------------
 
-prop_ers_per_tissue_plot <- 
-  prop_ers_per_tissue %>% 
-  ggplot(aes(
-    x = gene_type, 
-    y = prop_ers
-  )) + 
-  geom_violin(
-    aes(fill = gene_type)
-  ) + 
-  geom_boxplot(
-    width = 0.5
-  ) + 
+prop_genes_threshold_5_IDB_plot <- 
+  df_lncRNA_genes_IDB_tidy %>% 
+  
+  ggplot(aes(x = gene_category,
+             y = proportion)) + 
+  geom_violin(aes(fill = gene_category)) +
+  geom_boxplot(width = 0.5) + 
   scale_x_discrete(name = "Gene category") + 
   scale_y_continuous(name = paste0(
-    "Proportion of genes with\n", 
-    "evidence of incomplete annotation"
-    ),
-    limits = c(0, 0.18)) +
+    "Proportion of genes with novel junctions misspliced in\nat least ",
+    "5 % of individuals.")) +
   ggpubr::stat_compare_means(label.x.npc = "center",
                              label.y.npc = "top",
                              size = 6) +
@@ -43,9 +36,9 @@ prop_ers_per_tissue_plot <-
 # Save data ---------------------------------------------------------------
 
 ggsave(
-  plot = prop_ers_per_tissue_plot, 
-  filename = "prop_ers_per_tissue.png", 
-  path = here::here("results", "ers"), 
+  plot = prop_genes_threshold_5_IDB_plot, 
+  filename = "prop_genes_threshold_5_IDB_plot.png", 
+  path = here::here("results", "intron_db"), 
   width = 6, 
   height = 5, 
   dpi = 600
