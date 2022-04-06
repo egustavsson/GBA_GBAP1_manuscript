@@ -11,6 +11,19 @@ Transcripts <-
     GBAP1 = read_tsv("/home/egust/Projects/GBA_GBAP1/raw_data/GBAP1_classification_filtered.txt", show_col_types = F)
   )
 
+# Functions ---------------------------------------------------------------
+
+plot_order <- function(data, category, gene){
+  
+  data %>%
+    group_by(associated_gene, region) %>% 
+    dplyr::mutate(freq = count / sum(count)) %>% 
+    dplyr::filter(associated_gene == gene,
+                  Isoform_class == category) %>%
+    arrange(freq) %>% 
+    pull(region)
+}
+
 # Main --------------------------------------------------------------------
 
 ## Data to plot ##
@@ -32,19 +45,6 @@ Transcripts_to_plot <-
   dplyr::mutate(region = str_replace_all(region, "_", " "),
                 associated_gene = str_replace_all(associated_gene, c("ENSG00000177628.16" = "GBA",
                                                                      "ENSG00000160766.14" = "GBAP1"))) 
-
-## Function to define order ##
-
-plot_order <- function(data, category, gene){
-  
-    data %>%
-    group_by(associated_gene, region) %>% 
-    dplyr::mutate(freq = count / sum(count)) %>% 
-    dplyr::filter(associated_gene == gene,
-                  Isoform_class == category) %>%
-    arrange(freq) %>% 
-    pull(region)
-}
 
 ## Plot ##
 
