@@ -8,7 +8,8 @@ library(ggrepel)
 
 # Load data ---------------------------------------------------------------
 
-GENCODEv38 <- rtracklayer::import("/home/egust/Projects/pseudogenes/raw_data/GENCODE_annotations/gencode.v38.annotation.gtf.gz")
+GENCODEv38 <- 
+  rtracklayer::import(here::here("data", "GENCODE_annotations/gencode.v38.annotation.gtf.gz"))
 
 # Main --------------------------------------------------------------------
 

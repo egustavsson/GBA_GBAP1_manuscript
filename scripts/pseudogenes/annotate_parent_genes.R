@@ -7,12 +7,12 @@ library(rtracklayer)
 
 # Arguments ---------------------------------------------------------------
 
-args <-
-  list(
-    path_to_GENCODEv10 = here::here("raw_data/GENCODE_annotations", "gencode.v10.annotation.gtf.gz"),
-    path_to_OMIM = here::here("results", "omim_morbid.rda"),
-    path_to_GTEx = "/data/GTEx_expression/GTEx_v8/GTEx_Analysis_2017-06-05_v8_RNASeQCv1.1.9_gene_median_tpm.gct.gz",
-    path_to_parent = here::here("raw_data", "gencode.v10.pgene.parents.txt"))
+# args <-
+#   list(
+#     path_to_GENCODEv10 = here::here("raw_data/GENCODE_annotations", "gencode.v10.annotation.gtf.gz"),
+#     path_to_OMIM = here::here("results", "omim_morbid.rda"),
+#     path_to_GTEx = "/data/GTEx_expression/GTEx_v8/GTEx_Analysis_2017-06-05_v8_RNASeQCv1.1.9_gene_median_tpm.gct.gz",
+#     path_to_parent = here::here("raw_data", "gencode.v10.pgene.parents.txt"))
 
 # Load data ---------------------------------------------------------------
 
