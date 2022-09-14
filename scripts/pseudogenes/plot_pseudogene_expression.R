@@ -2,41 +2,45 @@
 
 library(tidyverse)
 library(here)
-library(ggalluvial)
 
 # Load data ---------------------------------------------------------------
 
-load("/home/egust/Projects/pseudogenes/results/pseudogene_annotated.rda")
+load(here::here("results", "pseudogenes", "pseudogene_annotated.rda"))
 
 # Main --------------------------------------------------------------------
 
-pseudogenes_expression_to_plot <-
+pseudogene_expression_to_plot <- 
   pseudogene_annotated %>%
-  dplyr::filter(pseudogene_type %in% c("Unprocessed", "Processed"),
-                is_expressed != "NA") %>% 
+      dplyr::filter(pseudogene_type %in% c("Unprocessed", "Processed")) %>%
+      dplyr::select(no_tissues_expressed,
+                    type = pseudogene_type) %>%
+      dplyr::mutate(gene = "Pseudogenes") %>% 
+      na.omit() %>% 
   
-  ggplot(aes(axis1 = pseudogene_type,
-             axis2 = is_expressed,
-             fill = pseudogene_type)) +
-  scale_x_discrete(limits = c("pseudogene_type", "is.expressed"),
-                   labels = c("Pseudogene\ntype", "Expressed in\nGTEx"),
-                   expand = c(.2, .05)) +
-  geom_flow() +
-  geom_stratum() +
-  geom_text(stat = "stratum", 
-            aes(label = after_stat(stratum))) +
-  scale_fill_manual(values = c("#7570B3", "#E6AB02")) +
-  theme_void() +
-  theme(legend.position = "none",
-        axis.text.x = element_text(size = 12, 
-                                   face = "bold"))
+  # Plot
+  ggplot(aes(x = no_tissues_expressed))+
+  geom_histogram(aes(y=..density..),
+                 position = "dodge", 
+                 colour = "black", 
+                 binwidth = 2,
+                 fill = "lightblue") + 
+  labs(x = "Number of tissues expressed (GTEx)", y = "Percentage of processed and unprocessed\n pseudogenes expressed") +
+  scale_x_continuous(n.breaks = 10) +
+  scale_y_continuous(labels = function(x) paste0(x * 100, "%"),
+                     n.breaks = 5,
+                     limits = c(0, 0.2)) +
+  theme_classic() +
+  theme(axis.title = element_text(size = 20),
+        axis.text = element_text(size = 16),
+        legend.title = element_blank())
+  
 
 # Save data ---------------------------------------------------------------
 
-ggsave(plot = pseudogenes_expression_to_plot, 
-       filename = "pseudogenes_expression_to_plot.png", 
+ggsave(plot = pseudogene_expression_to_plot, 
+       filename = "pseudo_expression_plot.svg", 
        path = here::here("results", "pseudogenes"), 
-       width = 4, 
-       height = 3, 
+       width = 9, 
+       height = 7, 
        dpi = 600
 )

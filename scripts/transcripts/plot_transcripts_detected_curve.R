@@ -2,6 +2,7 @@
 
 library(tidyverse)
 library(here)
+library(ggforce)
 
 # Load data ---------------------------------------------------------------
 
@@ -42,10 +43,10 @@ number_of_transcripts_per_gene_plot <-
            for(i in threshs){
              transcripts_per_sample <- counts.long %>%
                dplyr::filter(read_count >=i) %>%
-               group_by(sample) %>%
-               summarise(n_transcripts = n(), 
+               dplyr::group_by(sample) %>%
+               dplyr::summarise(n_transcripts = dplyr::n(), 
                          .groups = "keep") %>%
-               mutate(NFLR_threshold = i)
+               dplyr::mutate(NFLR_threshold = i)
              
              res <- rbind(res, transcripts_per_sample)
              
@@ -58,8 +59,8 @@ number_of_transcripts_per_gene_plot <-
            
            sd <- res %>%
              dplyr::filter(!sample %in% "NFLR_mean") %>%
-             group_by(NFLR_threshold) %>%
-             summarise(sd = sd(n_transcripts), 
+             dplyr::group_by(NFLR_threshold) %>%
+             dplyr::summarise(sd = sd(n_transcripts), 
                        .groups = "keep")
            
            df <- left_join(df, 
@@ -111,7 +112,7 @@ for (i in unique(number_of_transcripts_per_gene_plot$gene)) {
                                       size = 12),
           legend.title = element_blank())
   
-  ggsave(filename = paste0(i, "_transcripts_detected_plot.png"), 
+  ggsave(filename = paste0(i, "_transcripts_detected_plot.svg"), 
          path = here::here("results", "transcripts"), 
          width = 6, 
          height = 4, 

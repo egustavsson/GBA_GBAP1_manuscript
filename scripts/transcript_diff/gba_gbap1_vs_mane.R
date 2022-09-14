@@ -6,7 +6,6 @@
 # based on the commit SHA
 # devtools::install_github("dzhang32/ggtranscript@88d23b43b42de3e49a67dc8130f5263b6dcf81d1")
 library(ggtranscript)
-
 library(tidyverse)
 library(here)
 library(R.utils)
@@ -15,9 +14,8 @@ library(GenomicRanges)
 
 # Load data ---------------------------------------------------------------
 
-lr <- rtracklayer::import(
-  here::here("raw_data", "Brain_regions_corrected.gtf.cds.gff")
-  )
+lr <- rtracklayer::import("/home/egust/Projects/GBA_GBAP1/raw_data/PacBio_targeted_Brain/Brain_regions_corrected.gtf.cds.gff")
+
 
 # also download and load reference annotation 
 ref_path <- here::here(tempdir(), "gencode.v38.annotation.gtf.gz")
@@ -163,11 +161,8 @@ plot_diff <- function(lr_exons_cds,
 gba_lr_exons_cds <- get_lr_tx_of_interest(
   lr = lr, 
   pb_ids = c(
-    "PB.845.2888",
-    "PB.845.2786", 
     "PB.845.2627", 
     "PB.845.2629",
-    "PB.845.2848",
     "PB.845.2954"
   ))
 
@@ -194,8 +189,7 @@ gbap1_lr_exons_cds <- get_lr_tx_of_interest(
   lr = lr, 
   pb_ids = c(
     "PB.845.525", 
-    "PB.845.1693",
-    "PB.845.565"
+    "PB.845.1693"
   ))
 
 gbap1_mane_exons_cds <- get_mane(ref, mane_id = "ENST00000566701")
@@ -220,7 +214,7 @@ gbap1_lr_mane_diff_plot <-
 
 ggsave(
   plot = gba_lr_mane_diff_plot, 
-  filename = "gba_lr_mane_diff_plot.png", 
+  filename = "gba_lr_mane_diff_plot.svg", 
   path = here::here("results", "transcript_diff"), 
   width = 6, 
   height = 4, 
@@ -229,7 +223,7 @@ ggsave(
 
 ggsave(
   plot = gbap1_lr_mane_diff_plot, 
-  filename = "gbap1_lr_mane_diff_plot.png", 
+  filename = "gbap1_lr_mane_diff_plot.svg", 
   path = here::here("results", "transcript_diff"), 
   width = 6, 
   height = 4, 

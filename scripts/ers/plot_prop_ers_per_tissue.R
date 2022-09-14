@@ -24,18 +24,19 @@ prop_ers_per_tissue_plot <-
   geom_boxplot(
     width = 0.5
   ) + 
-  scale_x_discrete(name = "Gene category") + 
-  scale_y_continuous(name = paste0(
-    "Proportion of genes with\n", 
-    "evidence of incomplete annotation"
-    ),
-    limits = c(0, 0.18)) +
-  ggpubr::stat_compare_means(label.x.npc = "center",
-                             label.y.npc = "top",
-                             size = 6) +
-  scale_fill_discrete(guide = "none") + 
-  theme_bw() +
-  theme(axis.title = element_text(size = 14),
+  scale_x_discrete(name = "",
+                   labels = c("Parent gene" = "Parent genes", "Protein Coding" = "Protein coding\ngenes")) + 
+  scale_y_continuous(labels = function(x) paste0(x * 100, "%"),
+                     name = "Proportion of genes with\nevidence of incomplete annotation",
+                     limits = c(0, 0.18)) +
+  ggpubr::stat_compare_means(label.x = 1.2,
+                             label.y = 0.17,
+                             size = 5) +
+  scale_fill_manual(guide = "none",
+                    values = c("#5ab4ac", "#ffffff")) + 
+  theme_classic() +
+  theme(panel.border = element_rect(colour = "black", fill=NA, size=1),
+        axis.title = element_text(size = 14),
         axis.text.x = element_text(size = 12),
         axis.text.y = element_text(size = 12),
         axis.title.y = element_text(size = 14))
@@ -44,7 +45,7 @@ prop_ers_per_tissue_plot <-
 
 ggsave(
   plot = prop_ers_per_tissue_plot, 
-  filename = "prop_ers_per_tissue.png", 
+  filename = "prop_ers_per_tissue.svg", 
   path = here::here("results", "ers"), 
   width = 6, 
   height = 5, 

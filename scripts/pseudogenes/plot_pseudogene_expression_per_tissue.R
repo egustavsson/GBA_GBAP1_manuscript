@@ -14,7 +14,6 @@ load(here::here("results", "pseudogenes", "pseudogene_annotated.rda"))
 # Functions ---------------------------------------------------------------
 
 is.brain <- 
-  
   function(x) {
     
     grepl("Brain", x)
@@ -73,18 +72,6 @@ Mean_expression_per_tissue <-
     return(means)
   }
 
-Ratio_expression_per_tissue <-
-  
-  function(data) {
-    
-    ratio <-
-      dplyr::left_join(data[data$pseudogene_type == "Unprocessed", ],
-                       data[data$pseudogene_type == "Processed", ],
-                       by = c("Tissue" = "Tissue")) %>% 
-      dplyr::mutate(`Unprocessed/Processed` = log2(Pseudogenes.x/Pseudogenes.y),
-                    Brain = sapply(Tissue, is.brain))
-  }
-
 # Main --------------------------------------------------------------------
 
 pseudo_exp <- 
@@ -94,46 +81,33 @@ pseudo_exp <-
 
 pseudogene_expression_per_tissue <-
   Mean_expression_per_tissue(data = pseudo_exp) %>% 
+  dplyr::filter(Tissue != "MeanTPM") %>% 
   
-  ggplot(aes(x = reorder(Tissue, +exp), y = exp)) +
-  geom_point(aes(color = Brain), size = 2.5) +
+  ggplot(aes(x = reorder(Tissue, -exp), y = exp)) +
+  geom_col(fill = "grey83", color = "Black", size = 0.5, width = 0.7) +
   scale_colour_manual(labels = c("Non-brain", "Brain"),
                       values = c("grey", "darkturquoise")) +
-  coord_flip() +
-  labs(x = "Tissue",
+  scale_y_continuous(labels = function(x) paste0(x, "%")) +
+  labs(x = "",
        y = "Pseudogenes expressed (%)") +
   theme_classic() +
-  theme(legend.title=element_blank(),
-        legend.position = c(0.8, 0.5),
-        legend.text = element_text(size = 10))
-
-# Pseudogenes fractions expressed per tissue
-
-ratio_pseudogene_expression_per_tissue <-
-  Ratio_expression_per_tissue(data = pseudo_exp) %>% 
-  
-  ggplot(aes(x = reorder(Tissue, +`Unprocessed/Processed`), y = `Unprocessed/Processed`)) +
-  geom_point(aes(color = Brain), size = 2.5) +
-  geom_hline(yintercept = 0, 
-             linetype = "dashed", 
-             color = "lightgrey") +
-  scale_colour_manual(labels = c("Non-brain", "Brain"),
-                      values = c("grey", "darkturquoise")) +
   coord_flip() +
-  labs(x = "Tissue",
-       y = bquote(log[2]~fold~change~(Unprocessed/Processed))) +
-  theme_classic() +
   theme(legend.title=element_blank(),
         legend.position = c(0.8, 0.5),
-        legend.text = element_text(size = 10))
+        legend.text = element_text(size = 12),
+        axis.title = element_text(size = 16),
+        axis.text.y = element_text(size = 12,
+                                 face = "bold"),
+        axis.text.x = element_text(size = 12,
+                                   face = "bold"))
 
 # Save data ---------------------------------------------------------------
 
 ggsave(
-  plot = pseudogene_expression_per_tissue / ratio_pseudogene_expression_per_tissue, 
-  filename = "pseudogene_expression_per_tissue_plot.png", 
+  plot = pseudogene_expression_per_tissue, 
+  filename = "pseudogene_expression_per_tissue_plot.svg", 
   path = here::here("results", "pseudogenes"), 
-  width = 7, 
-  height = 9, 
+  width = 9, 
+  height = 7, 
   dpi = 600
 )

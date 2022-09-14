@@ -6,22 +6,61 @@ library(here)
 
 # Arguments ---------------------------------------------------------------
 
+
+# Get GTEx median TPM
+GTEx_path <- here::here(tempdir(), "GTEx_Analysis_2017-06-05_v8_RNASeQCv1.1.9_gene_median_tpm.gct.gz")
+
+if(!file.exists(GTEx_path)) {
+  
+  download.file(
+    url = paste0(
+      "https://storage.googleapis.com/gtex_analysis_v8/rna_seq_data/", 
+      "GTEx_Analysis_2017-06-05_v8_RNASeQCv1.1.9_gene_median_tpm.gct.gz"
+    ),
+    destfile = GTEx_path
+  )
+  
+}
+
+# Args
 args <-
   list(
-    path_to_GENCODE = here::here("results", "GENCODE_pseudogenes.rda"),
-    path_to_OMIM = here::here("results", "omim_morbid.rda"),
-    path_to_GTEx = "/data/GTEx_expression/GTEx_v8/GTEx_Analysis_2017-06-05_v8_RNASeQCv1.1.9_gene_median_tpm.gct.gz")
+    path_to_ref = here::here("data", "gencode.v38.annotation.gtf.gz"),
+    path_to_OMIM = here::here("results", "pseudogenes", "omim_morbid.rda"),
+    path_to_GTEx = GTEx_path)
 
 # Load data ---------------------------------------------------------------
-load(args$path_to_GENCODE)
 
 GENCODE_v38_pseudo <-
-  GENCODE_pseudogenes$version38 %>% 
-  plyranges::filter(source == "HAVANA",
-                    gene_type != "polymorphic_pseudogene")
+  rtracklayer::import(args$path_to_ref) %>% 
+  plyranges::filter(str_detect(gene_type, "pseudogene"),
+                    type == "gene",
+                    source == "HAVANA",
+                    gene_type != "polymorphic_pseudogene") %>% 
+  plyranges::mutate(pseudogene_type = case_when(gene_type %in% c("transcribed_unprocessed_pseudogene", 
+                                                                 "unprocessed_pseudogene", 
+                                                                 "translated_unprocessed_pseudogene") ~ "Unprocessed",
+                                                gene_type %in% c("processed_pseudogene", 
+                                                                 "transcribed_processed_pseudogene", 
+                                                                 "translated_processed_pseudogene") ~ "Processed",
+                                                gene_type %in% c("IG_V_pseudogene", 
+                                                                 "IG_C_pseudogene", 
+                                                                 "IG_J_pseudogene", 
+                                                                 "IG_pseudogene",
+                                                                 "TR_J_pseudogene", 
+                                                                 "TR_V_pseudogene",
+                                                                 "transcribed_unitary_pseudogene", 
+                                                                 "unitary_pseudogene",
+                                                                 "polymorphic_pseudogene",
+                                                                 "rRNA_pseudogene",
+                                                                 "pseudogene") ~ "Other"))
 
+
+
+# OMIM morbid data
 load(args$path_to_OMIM)
 
+# GTEx median TPM data
 GTEx_median_tpm <- 
   read.delim(args$path_to_GTEx,
              header = TRUE,
@@ -50,4 +89,4 @@ pseudogene_annotated <-
                                          MeanTPM == 0 ~ "No"))
   
 # Save data -------------------------------------------------------------------------------------------
-save(pseudogene_annotated, file = here::here("results", "pseudogene_annotated.rda"))
+save(pseudogene_annotated, file = here::here("results", "pseudogenes", "pseudogene_annotated.rda"))
