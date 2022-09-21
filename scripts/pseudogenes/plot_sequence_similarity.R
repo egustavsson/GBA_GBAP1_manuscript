@@ -15,7 +15,7 @@ sequence_similarity_plot <-
   geom_histogram(colour = "black", 
                  bins = 50) +
   geom_segment(aes(x = 0.96, y = 0, xend = 0.96, yend = 620), colour = "black") + 
-  geom_text(aes(x=0.96, y= 680, label = "GBA-GBAP1"), 
+  geom_text(aes(x=0.96, y= 680, label = "GBA1-GBAP1"), 
             colour = "black", 
             vjust = 1, 
             size = 6, fontface = "italic") +
