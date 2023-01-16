@@ -36,7 +36,7 @@ sequence_similarity_plot <-
 ggsave(plot = sequence_similarity_plot, 
        filename = "sequence_similarity_plot.svg", 
        path = here::here("results", "pseudogenes"), 
-       width = 8, 
+       width = 9, 
        height = 6, 
        dpi = 600
 )

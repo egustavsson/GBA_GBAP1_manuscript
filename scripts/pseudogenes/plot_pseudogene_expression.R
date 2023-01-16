@@ -40,7 +40,7 @@ pseudogene_expression_to_plot <-
 ggsave(plot = pseudogene_expression_to_plot, 
        filename = "pseudo_expression_plot.svg", 
        path = here::here("results", "pseudogenes"), 
-       width = 9, 
+       width = 7, 
        height = 7, 
        dpi = 600
 )
