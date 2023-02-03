@@ -187,7 +187,7 @@ Transcripts_of_interest <-
   compare_CDS(query = Isoforms_Brain, 
               subject = Isoforms_iPSC, 
               pb_ids = c("PB.845.2888",
-                         "PB.845.2786",
+                         # "PB.845.2786",
                          # "PB.845.2627",
                          # "PB.845.2629",
                          "PB.845.2954",
@@ -219,11 +219,10 @@ Data_to_plot <-
   
   # add gene information
   dplyr::mutate(Gene = case_when(CDS %in% c("PB.845.2888",
-                                            "PB.845.2786",
                                             "PB.845.2954") ~ "GBA",
                                  CDS %in% c("PB.845.525",
                                             "PB.845.1693") ~ "GBAP1")) %>% 
-  dplyr::filter(Cell_category %in% c("Neuron", "Astrocyte (untreated)", "Microglia (untreated)"))
+  dplyr::filter(Cell_category %in% c("Neuron", "Astrocyte (untreated)", "Microglia (untreated)")) 
   
 
 # Plot per gene
@@ -242,7 +241,7 @@ for (i in unique(Data_to_plot$Gene)) {
     geom_jitter(width = 0.2) +
     scale_y_continuous(labels = function(x) paste0(x, " %")) +
     scale_fill_manual(breaks = c("Neuron", "Astrocyte (untreated)", "Microglia (untreated)"),
-                      values = c("#91bfdb", "#ffffbf", "#fc8d59")) +
+                      values = c("#a6cee3", "#7fc564", "#fdbf6f")) +
     labs(x = "",
          y = "Relative expression (%)") +
     facet_wrap(vars(CDS), 

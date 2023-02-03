@@ -102,13 +102,24 @@ plot_suppotive_data_per_gene <-
             panel.border = element_rect(colour = "black", fill=NA, size=1))
     
     # Plot 5' single nuclear RNAseq
+    
+    # Define colors per cell type
+    fill_colors <- c("Excitatory neurons" = "#a6cee3", 
+                     "Inhibitory neurons" = "#ab9c6d", 
+                     "Astrocytes" = "#7fc564",
+                     "Microglia" = "#fdbf6f",
+                     "Oligodendrocyte progenitor cells" = "#3c8cab",
+                     "Oligodendrocytes" = "#e73334")
+    
     snRNA_plot <-
       snRNA_data %>% 
-      ggplot(aes(xmin = start, xmax = end, ymin = 0, ymax = score)) +
-      geom_rect(colour = "lightsalmon", fill = "lightsalmon", show.legend = F, alpha=0.8) +
+      ggplot(aes(xmin = start, xmax = end, ymin = 0, ymax = score, colour = cell_type, fill = cell_type)) +
+      geom_rect(show.legend = F, alpha=0.8) +
       xlim(start(locus_subset), end(locus_subset)) +
       labs(y = "Expression levels (RPKM)",
            x = "") +
+      scale_fill_manual(values = fill_colors) +
+      scale_color_manual(values = fill_colors) +
       facet_wrap(vars(cell_type), 
                  ncol = 1, 
                  strip.position = "right",
