@@ -74,16 +74,18 @@ pseudogene_transcripts <-
                                                                "translated_processed_pseudogene") ~ "Processed")) %>% 
   aggregate(data = ., transcripts ~ annot_gene_id + gene_type + Tissue, FUN = mean) %>%  # use aggregate to get the mean number of transcripts
   dplyr::mutate(alternative_splicing = case_when(transcripts == 1 ~ "No (single transcript)",
-                                                   transcripts >= 1 ~ "Yes (multiple transscripts)"))
+                                                   transcripts >= 1 ~ "Yes (multiple transcripts)"))
+# Plot
 number_of_transcripts_pseudogene_plot <-
   pseudogene_transcripts %>% 
   count(alternative_splicing, gene_type, Tissue) %>% 
   group_by(gene_type, Tissue) %>% 
   dplyr::mutate(Percentage = (n/sum(n) *100)) %>% 
   
-  
   ggplot(aes(x = gene_type, y = Percentage, fill = alternative_splicing)) +
   geom_bar(stat = "identity", colour="black", width = 0.5) +
+  geom_text(aes(label = paste0(round(Percentage, digits = 1),"%")), 
+            position = position_stack(vjust = 0.5), size = 4) +
   facet_grid(Tissue ~ gene_type, 
              scales="free",
              space = "free") +
@@ -92,7 +94,7 @@ number_of_transcripts_pseudogene_plot <-
   scale_y_continuous(labels = function(x) paste0(x, "%")) +
   scale_fill_manual("Alternatively spliced pseudogenes",
                     values = c("white", "lightblue"),
-                    breaks = c("No (single transcript)", "Yes (multiple transscripts)"),
+                    breaks = c("No (single transcript)", "Yes (multiple transcripts)"),
                     guide = guide_legend(direction = "horizontal",
                                          title.position = "top")) +
   
@@ -103,12 +105,11 @@ number_of_transcripts_pseudogene_plot <-
         legend.title = element_text(size = 16,
                                     face = "bold"),
         legend.text = element_text(size = 12),
-        axis.title = element_text(size = 14),
         axis.text.x = element_blank(),
         axis.ticks.x = element_blank(),
         axis.text.y = element_text(face = "bold",
-                                   size = 10),
-        axis.title.y = element_text(size = 14),
+                                   size = 12),
+        axis.title.y = element_text(size = 16),
         strip.text = element_text(face = "bold",
                                     size = 12),
         strip.background = element_rect(size = 1, color = "black", fill="gray83"))
@@ -120,6 +121,6 @@ ggsave(plot = number_of_transcripts_pseudogene_plot,
        filename = "number_of_transcripts_pseudogene_plot.svg", 
        path = here::here("results", "ENCODE_LR"), 
        width = 6, 
-       height = 10, 
+       height = 11, 
        dpi = 600
 )

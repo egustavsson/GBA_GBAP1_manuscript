@@ -59,7 +59,7 @@ plot_suppotive_data_per_gene <-
                                 grepl("Inhibitoryneurons", sample) ~ "Inhibitory neurons",
                                 grepl("Astrocytes", sample) ~ "Astrocytes",
                                 grepl("Microglia", sample) ~ "Microglia",
-                                grepl("OPC", sample) ~ "Oligodendrocyte progenitor cells",
+                                grepl("OPC", sample) ~ "OPCs",
                                 grepl("Oligodendrocytes", sample) ~ "Oligodendrocytes")) %>% 
         data.frame()
       
@@ -108,7 +108,7 @@ plot_suppotive_data_per_gene <-
                      "Inhibitory neurons" = "#ab9c6d", 
                      "Astrocytes" = "#7fc564",
                      "Microglia" = "#fdbf6f",
-                     "Oligodendrocyte progenitor cells" = "#3c8cab",
+                     "OPCs" = "#3c8cab",
                      "Oligodendrocytes" = "#e73334")
     
     snRNA_plot <-

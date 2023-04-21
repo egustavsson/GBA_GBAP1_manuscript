@@ -153,7 +153,8 @@ GBA_base_plot <-
     xend = end,
     y = transcript_id
   )) +
-  geom_range(height = 0.25) +
+  geom_range(height = 0.25,
+             fill = "white") +
   geom_range(
     data = GBA_cds
   ) +
