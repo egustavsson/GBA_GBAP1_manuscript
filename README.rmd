@@ -1,0 +1,28 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# GBA1 and GBAP1 manuscript
+This repository contains the code used to generate the plots used in the GBA1 and GBAP1 manuscript.
+
+## Code contents
+
+Within this repository you will find:
+
+| Directory | Description |
+| --------- | --------------------------------------------------------------------------- |
+| [docs](docs) | Contains all `.Rmd`s and their corresponding `.html`s describing analyses performed for this project. |
+| [data](data)| Data used for the analysis. Most will not be available due to size. |
+| [results](results) | Results from all analyses. |
+| [scripts](scripts) | Contains analysis scripts. Each script contains a one-line description and is also referenced in its corresponding `.Rmd`. |
