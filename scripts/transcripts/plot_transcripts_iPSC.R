@@ -222,7 +222,8 @@ Data_to_plot <-
                                             "PB.845.2954") ~ "GBA",
                                  CDS %in% c("PB.845.525",
                                             "PB.845.1693") ~ "GBAP1")) %>% 
-  dplyr::filter(Cell_category %in% c("Neuron", "Astrocyte (untreated)", "Microglia (untreated)")) 
+  dplyr::filter(Cell_category %in% c("Neuron", "Astrocyte (untreated)", "Microglia (untreated)")) %>% 
+  dplyr::mutate(Cell_category = str_replace(Cell_category, "\\s*\\(untreated\\)", ""))
   
 
 # Plot per gene
@@ -232,15 +233,15 @@ for (i in unique(Data_to_plot$Gene)) {
     dplyr::filter(Gene == i) %>% 
     
     ggplot(aes(x = factor(Cell_category, levels = c("Neuron",
-                                                    "Astrocyte (untreated)",
-                                                    "Microglia (untreated)"
+                                                    "Astrocyte",
+                                                    "Microglia"
                                                     )), 
                y = Relative_expression,
                fill = Cell_category)) +
     geom_boxplot(outlier.shape = NA) +
     geom_jitter(width = 0.2) +
     scale_y_continuous(labels = function(x) paste0(x, " %")) +
-    scale_fill_manual(breaks = c("Neuron", "Astrocyte (untreated)", "Microglia (untreated)"),
+    scale_fill_manual(breaks = c("Neuron", "Astrocyte", "Microglia"),
                       values = c("#a6cee3", "#7fc564", "#fdbf6f")) +
     labs(x = "",
          y = "Relative expression (%)") +
@@ -252,12 +253,12 @@ for (i in unique(Data_to_plot$Gene)) {
     theme(legend.position = "none",
           axis.title = element_text(size = 22),
           axis.text.x = element_text(face = "bold",
-                                     size = 14, angle = 45, 
+                                     size = 20, angle = 45, 
                                      hjust = 1),
           axis.text.y = element_text(face = "bold",
                                      size = 16),
           strip.text.x = element_text(face = "bold",
-                                      size = 14),
+                                      size = 16),
           strip.background =element_rect(fill = "gray80"))
   
   ggsave(filename = paste0(i, "_unique_CDS_detected_iPSC_plot.svg"), 

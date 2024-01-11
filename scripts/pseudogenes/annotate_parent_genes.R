@@ -9,10 +9,10 @@ library(rtracklayer)
 
 args <-
   list(
-    path_to_GENCODEv10 = here::here("raw_data/GENCODE_annotations", "gencode.v10.annotation.gtf.gz"),
+    path_to_GENCODEv10 = here::here("data", "gencode.v10.annotation.gtf.gz"),
     path_to_OMIM = here::here("results", "pseudogenes", "omim_morbid.rda"),
     path_to_GTEx = "/data/GTEx_expression/GTEx_v8/GTEx_Analysis_2017-06-05_v8_RNASeQCv1.1.9_gene_median_tpm.gct.gz",
-    path_to_parent = here::here("raw_data", "gencode.v10.pgene.parents.txt"))
+    path_to_parent = here::here("data", "gencode.v10.pgene.parents.txt"))
 
 # Load data ---------------------------------------------------------------
 
@@ -108,4 +108,4 @@ parentgene_annotated <-
   distinct(., Parent_name, .keep_all = TRUE)
 
 # Save data -------------------------------------------------------------------------------------------
-save(parentgene_annotated, file = here::here("results", "parentgene_annotated.rda"))
+saveRDS(parentgene_annotated, file = here::here("results", "pseudogenes", "parentgene_annotated.rds"))

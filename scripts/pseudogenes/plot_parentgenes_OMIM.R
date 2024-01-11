@@ -6,12 +6,12 @@ library(here)
 # Load data ---------------------------------------------------------------
 
 # Parent genes
-load(here::here("results", "pseudogenes", "parentgene_annotated.rda"))
+parentgenes <- readRDS(here::here("results", "pseudogenes", "parentgene_annotated.rds"))
 
 # Main --------------------------------------------------------------------
 
 parent_genes_OMIM_plot <-
-  parentgene_annotated %>% 
+  parentgenes %>% 
   dplyr::filter(associated_pseudo %in% c("Unprocessed", "Processed")) %>% 
   dplyr::select(omim_morbid) %>% 
   table() %>%
