@@ -21,18 +21,14 @@ Within this repository you will find:
 </thead>
 <tbody>
 <tr class="odd">
-<td><a href="docs" class="uri">docs</a></td>
-<td>Contains all <code>.Rmd</code>s and their corresponding <code>.html</code>s describing analyses performed for this project.</td>
-</tr>
-<tr class="even">
 <td><a href="data" class="uri">data</a></td>
 <td>Data used for the analysis. Most will not be available due to size.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="results" class="uri">results</a></td>
 <td>Results from all analyses.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="scripts" class="uri">scripts</a></td>
 <td>Contains analysis scripts. Each script contains a one-line description and is also referenced in its corresponding <code>.Rmd</code>.</td>
 </tr>

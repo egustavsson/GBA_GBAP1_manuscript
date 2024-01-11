@@ -22,7 +22,6 @@ Within this repository you will find:
 
 | Directory | Description |
 | --------- | --------------------------------------------------------------------------- |
-| [docs](docs) | Contains all `.Rmd`s and their corresponding `.html`s describing analyses performed for this project. |
 | [data](data)| Data used for the analysis. Most will not be available due to size. |
 | [results](results) | Results from all analyses. |
 | [scripts](scripts) | Contains analysis scripts. Each script contains a one-line description and is also referenced in its corresponding `.Rmd`. |
