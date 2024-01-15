@@ -1,5 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+[![DOI](https://zenodo.org/badge/464568759.svg)](https://zenodo.org/doi/10.5281/zenodo.10514841)
+
 # GBA1 and GBAP1 manuscript
 
 This repository contains the code used to generate the plots used in the GBA1 and GBAP1 manuscript.
