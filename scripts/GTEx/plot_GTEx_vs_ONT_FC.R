@@ -8,15 +8,19 @@ library(here)
 # GTEx gene level expression data
 gtex_filtered <- 
   readRDS("/home/egust/Projects/GBA_GBAP1/results/gtexv8_GBA_GBAP1_tpm.Rds") %>% 
-  dplyr::mutate(Organ = gsub("Brain - ", "" , Organ))
+  dplyr::mutate(Organ = gsub("Brain - ", "" , Organ)) %>% 
+  dplyr::mutate(Description = ifelse(Description == "GBA", "GBA1", Description)) # GBA has changed name to GBA1
 
 # ONT direct cDNA sequencing data from Frontal lobe and Hippocampus
 ONT <- 
   list(FL = read_tsv(here::here("data", "ONT_long_read", "gene_abundance_FL.tab"), show_col_types = FALSE) %>% 
-         dplyr::mutate(Organ = "Frontal lobe"),
+         dplyr::mutate(Organ = "Frontal lobe") %>% 
+         dplyr::mutate(`Gene Name` = ifelse(`Gene Name` == "GBA", "GBA1", `Gene Name`)), # GBA has changed name to GBA1,
        
        Hipp = read_tsv(here::here("data", "ONT_long_read", "gene_abundance_Hipp.tab"), show_col_types = FALSE) %>% 
-         dplyr::mutate(Organ = "Hippocampus"))
+         dplyr::mutate(Organ = "Hippocampus") %>%
+         dplyr::mutate(`Gene Name` = ifelse(`Gene Name` == "GBA", "GBA1", `Gene Name`))
+       )
 
 # Main --------------------------------------------------------------------
 
@@ -25,7 +29,7 @@ LR_FC <-
   lapply(ONT, function(x){
     
     data.frame(Organ = unique(x$Organ),
-               FC = log2(x$TPM[x$`Gene Name` == "GBA"] / x$TPM[x$`Gene Name` == "GBAP1"]))
+               FC = log2(x$TPM[x$`Gene Name` == "GBA1"] / x$TPM[x$`Gene Name` == "GBAP1"]))
   }) %>% 
   bind_rows(!!!.)
  
@@ -39,7 +43,7 @@ GTEx_GBA_GBAP1 <-
   split(., list(.$Description))
   
 GTEx_FC <-
-  dplyr::left_join(GTEx_GBA_GBAP1$GBA,
+  dplyr::left_join(GTEx_GBA_GBAP1$GBA1,
                    GTEx_GBA_GBAP1$GBAP1,
                    by = "SAMPID") %>% 
   dplyr::mutate(FC = log2(tpm.x / tpm.y)) %>% 
@@ -47,7 +51,7 @@ GTEx_FC <-
   dplyr::filter(Organ %in% c("Frontal Cortex (BA9)", "Hippocampus")) 
 
 
-# add tha stats and a dotted line to plot #
+# add the stats and a dotted line to plot #
 
 # Frontal lobe
 grubbs_frontal <-
@@ -88,7 +92,7 @@ expression_GTEx_ONT_plot <-
   geom_text(data = filter(stats, Organ == "Hippocampus"),
             label = stats[stats$Organ == "Hippocampus", ]$p_val, size = 8, aes(x = 1.75, y = 0.75)) +
   
-  labs(y = "Density", x = bquote(log[2]~fold~change~(GBA/GBAP1))) +
+  labs(y = "Density", x = bquote(log[2]~fold~change~(GBA1/GBAP1))) +
   facet_wrap(. ~Organ) +
   theme_classic() +
   theme(legend.position = "top", 

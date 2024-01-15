@@ -7,7 +7,8 @@ library(here)
 
 gtex_filtered <- 
   readRDS(here::here("results", "GTEx", "gtexv8_GBA_GBAP1_tpm.Rds")) %>% 
-  dplyr::mutate(Organ = gsub("Brain - ", "" , Organ))
+  dplyr::mutate(Organ = gsub("Brain - ", "" , Organ)) %>% 
+  dplyr::mutate(Description = ifelse(Description == "GBA", "GBA1", Description)) # GBA has changed name to GBA1
 
 # Main --------------------------------------------------------------------
 
@@ -32,7 +33,7 @@ GBA_GBA_GTEx_expression_to_plot <-
                outlier.shape = NA, 
                show.legend = F) +
   scale_fill_manual(values = c("#5ab4ac", "#ffffff"),
-                    breaks = c("GBA", "GBAP1")) +
+                    breaks = c("GBA1", "GBAP1")) +
   ggpubr::stat_compare_means(method = "wilcox.test", 
                              colour = "Black", 
                              size = 2, vjust = 0.7) +
@@ -76,7 +77,7 @@ GBA_GBA_GTEx_fold_change_to_plot <-
                     values = c("#5ab4ac", "#ffffff")) +
   geom_vline(aes(xintercept = 0), linetype = "dashed", colour = "black") +
   labs(y = "", 
-       x = bquote(log[2]~fold~change~(GBA/GBAP1))) +
+       x = bquote(log[2]~fold~change~(GBA1/GBAP1))) +
   xlim(-1, 7) +
   theme_classic() +
   theme(legend.position = "top",
@@ -114,7 +115,7 @@ select_tissue_expression_to_plot <-
                outlier.shape = NA, 
                show.legend = F) +
   scale_fill_manual(values = c("#5ab4ac", "#ffffff"), 
-                    breaks = c("GBA", "GBAP1")) +
+                    breaks = c("GBA1", "GBAP1")) +
   ggpubr::stat_compare_means(method = "wilcox.test", 
                              colour = "Black", 
                              size = 6) +
@@ -137,7 +138,7 @@ select_tissue_expression_to_plot <-
 
 # All tissues
 ggsave(plot = GBA_GBA_GTEx_expression_to_plot, 
-      filename = "GBA_GBA_GTEx_expression_to_plot.svg", 
+      filename = "GBA_GBA_GTEx_expression_to_plot.png", 
       path = here::here("results", "GTEx"), 
       width = 11, 
       height = 10, 
@@ -145,7 +146,7 @@ ggsave(plot = GBA_GBA_GTEx_expression_to_plot,
 )
 
 ggsave(plot = GBA_GBA_GTEx_fold_change_to_plot, 
-       filename = "GBA_GBA_GTEx_fold_change_to_plot.svg", 
+       filename = "GBA_GBA_GTEx_fold_change_to_plot.png", 
        path = here::here("results", "GTEx"), 
        width = 8, 
        height = 8, 
@@ -154,7 +155,7 @@ ggsave(plot = GBA_GBA_GTEx_fold_change_to_plot,
 
 # Select tissues
 ggsave(plot = select_tissue_expression_to_plot, 
-       filename = "select_tissue_expression_to_plot.svg", 
+       filename = "select_tissue_expression_to_plot.png", 
        path = here::here("results", "GTEx"), 
        width = 10, 
        height = 6, 

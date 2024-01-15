@@ -5,6 +5,5 @@
 *.DS_Store
 data/*
 results/*
-supplementary_not_in_paper/*
 *.Rproj
 .Renviron
